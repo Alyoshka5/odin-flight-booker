@@ -32,13 +32,15 @@
 
 <h1>Found Flights</h1>
 <%= form_with url: new_flight_path, method: :get do |form| %>
+    <% check = true %>
     <% @found_flights.each do |flight| %>
         <div>
             <%= Airport.find(flight.departure_airport_id).airport_code %><br>
             <%= Airport.find(flight.arrival_airport_id).airport_code %><br>
             <%= flight.start %><br>
             <%= flight.duration %><br>
-            <input type="radio" name="flight_id" value="<%= flight.id %>" id="city_id_<%= flight.id %>">
+            <%= form.radio_button "flight_id", flight.id, checked: check %>
+            <% check = false %>
         </div><br>
     <% end %>
 
