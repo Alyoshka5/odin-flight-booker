@@ -1,0 +1,31 @@
+<h1>Flights</h1>
+
+<%= form_with url: "/index", method: :get do |form| %>
+    <div>
+    <%= form.label :departure_airport_id, "Departure airport: " %>
+    <%= select_tag(:departure_airport_id, options_for_select(@airport_options)) %>
+    </div>
+    <br>
+
+    <div>
+    <%= form.label :arrival_airport_id, "Arrival airport: " %>
+    <%= select_tag(:arrival_airport_id, options_for_select(@airport_options)) %>
+    </div>
+    <br>
+
+    <div>
+    <%= form.label :num_tickets, "Amount of tickets: " %>
+    <%= select_tag(:num_tickets, options_for_select(@num_ticket_options)) %>
+    </div>
+    <br>
+    
+    <div>
+    <%= form.label :flight_date, "Flight date: " %>
+    <%= select_tag(:flight_date, options_for_select(@flight_date_options)) %>
+    </div>
+    <br>
+
+    <div>
+        <%= form.submit "Search flights" %>
+    </div>
+<% end %>
