@@ -31,11 +31,17 @@
 <% end %>
 
 <h1>Found Flights</h1>
-<% @found_flights.each do |flight| %>
-    <div>
-        <%= Airport.find(flight.departure_airport_id).airport_code %><br>
-        <%= Airport.find(flight.arrival_airport_id).airport_code %><br>
-        <%= flight.start %><br>
-        <%= flight.duration %>
-    </div><br>
+<%= form_with url: new_flight_path, method: :get do |form| %>
+    <% @found_flights.each do |flight| %>
+        <div>
+            <%= Airport.find(flight.departure_airport_id).airport_code %><br>
+            <%= Airport.find(flight.arrival_airport_id).airport_code %><br>
+            <%= flight.start %><br>
+            <%= flight.duration %><br>
+            <input type="radio" name="flight_id" value="<%= flight.id %>" id="city_id_<%= flight.id %>">
+        </div><br>
+    <% end %>
+
+    <%= form.hidden_field :num_tickets, value: @num_tickets %>
+    <%= form.submit "Select flight" %>
 <% end %>
