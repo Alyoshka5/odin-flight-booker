@@ -14,8 +14,8 @@ airport_codes.each do |airport_code|
 end
 
 Flight.delete_all
-10.times do |i|
-    start = rand(1.years).seconds.from_now
+1000.times do |i|
+    start = rand(1.days..30.days).second.from_now
     duration = rand(60..360)
 
     departure_airport_code = airport_codes[rand(0..3)]
