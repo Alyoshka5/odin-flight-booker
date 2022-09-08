@@ -31,7 +31,7 @@
 <% end %>
 
 <h1>Found Flights</h1>
-<%= form_with url: new_flight_path, method: :get do |form| %>
+<%= form_with url: new_booking_path, method: :get do |form| %>
     <% check = true %>
     <% @found_flights.each do |flight| %>
         <div>

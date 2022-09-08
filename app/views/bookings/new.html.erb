@@ -1,0 +1,31 @@
+<h1>Booking</h1>
+
+<strong>Chosen date: </strong>
+<%= @flight.start %><br>
+
+<strong>Departure Aiport: </strong>
+<%= Airport.find(@flight.departure_airport_id).airport_code %><br>
+
+<strong>Arrival Aiport: </strong>
+<%= Airport.find(@flight.arrival_airport_id).airport_code %><br>
+
+<strong>Flight Id: </strong>
+<%= @flight.id %><br>
+
+<%= form_with model: @booking do |form| %>
+    Passengers:
+    <%= form.fields_for :passengers do |passengers_form| %>
+        <div>
+            <%= passengers_form.label :name %>
+            <%= passengers_form.text_field :name %>
+
+            <%= passengers_form.label :email %>
+            <%= passengers_form.text_field :email %>
+        </div>
+    <% end %>
+
+    <%= hidden_field_tag :flight_id, @flight.id %>
+    <%= hidden_field_tag :num_tickets, @num_tickets %>
+    <div><%= form.submit "Book Flight" %></div>
+<% end %>
+        
