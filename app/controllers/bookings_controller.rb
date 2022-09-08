@@ -15,10 +15,16 @@ class BookingsController < ApplicationController
         @flight.bookings << @booking
 
         if @booking.save
-            redirect_to root_path
+            redirect_to booking_path(@booking, flight_id: @flight.id)
         else
             render :new, :unprocessable_entity
         end
+    end
+
+    def show
+        @booking = Booking.find(params["id"])
+        @flight = Flight.find(params["flight_id"])
+        
     end
 
     private
