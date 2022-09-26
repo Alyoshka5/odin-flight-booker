@@ -1,0 +1,11 @@
+<html>
+<body>
+    <h2>Hello <%= @passenger.name %>, you are registered as a passenger for flight <%= @flight.id %></h2>
+    <br>
+    <h3>Flight details:</h3>
+    <p>Departure Airport: <%= @flight.departure_airport.airport_code %></p>
+    <p>Arrival Airport: <%= @flight.arrival_airport.airport_code %></p>
+    <p>Flight Date & Time: <%= @flight.start %></p>
+    <p>Flight duration: <%= @flight.duration %> minutes</p>
+</body>
+</html>

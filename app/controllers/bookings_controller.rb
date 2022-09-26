@@ -13,8 +13,10 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params())
         @booking.flight = @flight
         @flight.bookings << @booking
+        passenger_ids = @booking.passengers.map {|p| p.id }
 
         if @booking.save
+            PassengerMailer.with(passenger_ids: passenger_ids, flight: @flight).confirmation_email.deliver_later
             redirect_to booking_path(@booking, flight_id: @flight.id)
         else
             render :new, :unprocessable_entity
